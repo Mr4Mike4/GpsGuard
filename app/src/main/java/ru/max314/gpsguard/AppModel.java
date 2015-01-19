@@ -28,7 +28,7 @@ public class AppModel {
     private boolean isCloseActivityOnClick = false;
 
     private Date verifyDate;
-    private String verifyString;
+    private String verifyString="";
 
 
     Handler fixListenerStartHandler;
@@ -106,6 +106,14 @@ public class AppModel {
         edit.commit();
     }
 
+    public Date getVerifyDate() {
+        return verifyDate;
+    }
+
+    public String getVerifyString() {
+        return verifyString;
+    }
+
     public synchronized void setCurrentLocation(Object owner, Location currentLocation) {
         if (owner != locationService)
             return;
@@ -134,7 +142,6 @@ public class AppModel {
         locationService.start();
         locationFixService = new LocationFixService((android.location.LocationManager) App.getInstance().getSystemService(Context.LOCATION_SERVICE));
         locationFixService.start();
-
     }
 
     /**
@@ -163,7 +170,7 @@ public class AppModel {
             delta = Math.abs(verifyDate.getTime() - dt.getTime());
             min = TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES);
             if (delta>min){
-                verifyString = "В течении минуты не было фиксации спутникоф";
+                verifyString = "В течении минуты не было фиксации спутников";
                 return;
             }
         }

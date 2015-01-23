@@ -66,6 +66,7 @@ public class LocationListenerProcessing implements LocationListener, GpsStatus.L
     public void onLocationChanged(Location location) {
         LocationService.Log.d(location.toString());
         lastLocation = location;
+        // LocationService.Log.d("Location ="+location.toString());
         AppModel.getInstance().setCurrentLocation(owner,location);
     }
 

@@ -64,7 +64,7 @@ public class App extends Application {
         ACRA.getErrorReporter().addReportSender(sender);
         self = this;
         Log.d("App onCreate start");
-        BootService.start(this);
+        BootGpsGuardService.start(this);
         Log.d("After BootCarService.start(this);");
 //        Runtime.getRuntime().addShutdownHook(new Thread());
 

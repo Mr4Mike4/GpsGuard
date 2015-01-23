@@ -27,9 +27,18 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".BootService"
+            android:name=".BootGpsGuardService"
             android:exported="false" >
         </service>
+        <receiver
+            android:name=".OnBootBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 

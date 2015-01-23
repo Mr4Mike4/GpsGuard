@@ -1,0 +1,19 @@
+package ru.max314.gpsguard;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+import ru.max314.util.LogHelper;
+
+public class OnBootBroadcastReceiver extends BroadcastReceiver {
+    protected static LogHelper Log = new LogHelper(OnBootBroadcastReceiver.class);
+    public OnBootBroadcastReceiver() {
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Log.d("onReceive");
+        BootGpsGuardService.start(context);
+    }
+}

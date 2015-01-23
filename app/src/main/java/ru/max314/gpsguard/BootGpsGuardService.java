@@ -9,18 +9,18 @@ import ru.max314.util.LogHelper;
 /**
  * Created by max on 16.01.2015.
  */
-public class BootService extends IntentService {
+public class BootGpsGuardService extends IntentService {
     public static final String ACTION_START = "ru.max314.gpsguard.bootservice.START";
-    protected static LogHelper Log = new LogHelper(BootService.class);
+    protected static LogHelper Log = new LogHelper(BootGpsGuardService.class);
 
     public static void start(Context context) {
-        Intent intent = new Intent(context, BootService.class);
+        Intent intent = new Intent(context, BootGpsGuardService.class);
         intent.setAction(ACTION_START);
         context.startService(intent);
     }
 
 
-    public BootService() {
+    public BootGpsGuardService() {
         super("gpsguard.bootservice");
     }
 

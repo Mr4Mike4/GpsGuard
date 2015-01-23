@@ -53,14 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="by by by"
+                android:text=""
                 />
             <TextView
                 android:id="@+id/tvInfoError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="by by by"
+                android:text=""
                 />
             <View
                 android:layout_width="fill_parent"

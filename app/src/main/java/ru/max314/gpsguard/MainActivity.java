@@ -31,6 +31,8 @@ public class MainActivity extends ActionBarActivity {
     TextView tvCoord;
     @InjectView(R.id.tvInfo)
     TextView tvInfo;
+    @InjectView(R.id.tvInfoError)
+    TextView tvInfoError;
     @InjectView(R.id.cbShowActivity)
     CheckBox cbShowActivity;
     @InjectView(R.id.cbCloseOnClick)
@@ -86,6 +88,17 @@ public class MainActivity extends ActionBarActivity {
         String pattern1="Месположение: <font color='blue'>%s</font> , фикс :<font color='blue'> %s</font> , проверочный фикс: <font color='blue'>%s</font> ";
         buff = String.format(pattern1, formatDate(model.getCurrentLocationDate()),formatDate(model.getCurrentLocationDateFix()),formatDate(model.getCheckLocationDateFix()));
         tvInfo.setText(Html.fromHtml(buff));
+        String color = "green";
+        String verifyString = model.getVerifyString();
+        if (verifyString!=""){
+            color = "red";
+        }
+        else{
+            verifyString = "Ок";
+        }
+
+        buff = String.format("Проверка %s: <font color='%s'>%s</font>", formatDate(model.getVerifyDate()),color, verifyString);
+        tvInfoError.setText(Html.fromHtml(buff));
     }
 
     private String formatDate(Date value){

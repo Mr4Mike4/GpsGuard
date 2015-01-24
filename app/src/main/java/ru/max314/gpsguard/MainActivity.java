@@ -1,6 +1,7 @@
 package ru.max314.gpsguard;
 
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -18,11 +20,12 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import ru.max314.util.LogHelper;
 import ru.max314.util.threads.TimerUIHelper;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    static LogHelper Log = new LogHelper(MainActivity.class);
     @InjectView(R.id.tvDeviceTime)
     TextView tvDeviceTime;
     @InjectView(R.id.tvSpeed)
@@ -112,11 +115,34 @@ public class MainActivity extends ActionBarActivity {
     //region OnClick
     @OnClick(R.id.btClearAGPS)
     public void onClearAGPSClick(){
+        try
+        {
+            ((LocationManager)this.getSystemService(LOCATION_SERVICE)).sendExtraCommand("gps", "delete_aiding_data", null);
+            Toast.makeText(this, "AGPS запрос на сброс данных", Toast.LENGTH_LONG).show();
+            return;
+        }
+        catch(Exception exception)
+        {
+            Log.e("clear AGPS",exception);
+        }
+
 
     }
     @OnClick(R.id.btLoadAGPS)
     public void onLoadAGPSClick(){
-
+        try
+        {
+            LocationManager locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Bundle bundle = new Bundle();
+            locationmanager.sendExtraCommand("gps", "force_xtra_injection", bundle);
+            locationmanager.sendExtraCommand("gps", "force_time_injection", bundle);
+            Toast.makeText(this, "AGPS запрос на обновление данных", Toast.LENGTH_LONG).show();
+            return;
+        }
+        catch(Exception exception)
+        {
+            Log.e("clear AGPS",exception);
+        }
     }
 
     @OnClick(R.id.btHide)

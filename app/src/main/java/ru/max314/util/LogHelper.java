@@ -21,6 +21,10 @@ public class LogHelper {
         Log.d(tag, str);
     }
 
+    public void i(String str) {
+        Log.i(tag, str);
+    }
+
     public void e(String str) {
         Log.e(tag, str);
     }

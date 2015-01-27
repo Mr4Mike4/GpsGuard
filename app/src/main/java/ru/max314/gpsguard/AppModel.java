@@ -9,6 +9,7 @@ import android.os.Handler;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import ru.max314.util.GPSUtils;
 import ru.max314.util.threads.TimerHelper;
 
 
@@ -138,6 +139,9 @@ public class AppModel {
         if (locationService != null) {
             return;
         }
+        // Cбросм ЖПС
+        GPSUtils.clearAGPS(App.getInstance(),false);
+        // слушатели
         locationService = new LocationService((android.location.LocationManager) App.getInstance().getSystemService(Context.LOCATION_SERVICE));
         locationService.start();
         locationFixService = new LocationFixService((android.location.LocationManager) App.getInstance().getSystemService(Context.LOCATION_SERVICE));

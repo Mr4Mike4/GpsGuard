@@ -20,6 +20,7 @@ import java.util.Date;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import ru.max314.util.GPSUtils;
 import ru.max314.util.LogHelper;
 import ru.max314.util.threads.TimerUIHelper;
 
@@ -115,34 +116,12 @@ public class MainActivity extends ActionBarActivity {
     //region OnClick
     @OnClick(R.id.btClearAGPS)
     public void onClearAGPSClick(){
-        try
-        {
-            ((LocationManager)this.getSystemService(LOCATION_SERVICE)).sendExtraCommand("gps", "delete_aiding_data", null);
-            Toast.makeText(this, "AGPS запрос на сброс данных", Toast.LENGTH_LONG).show();
-            return;
-        }
-        catch(Exception exception)
-        {
-            Log.e("clear AGPS",exception);
-        }
-
-
+        GPSUtils.clearAGPS(this,true);
     }
+
     @OnClick(R.id.btLoadAGPS)
     public void onLoadAGPSClick(){
-        try
-        {
-            LocationManager locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
-            Bundle bundle = new Bundle();
-            locationmanager.sendExtraCommand("gps", "force_xtra_injection", bundle);
-            locationmanager.sendExtraCommand("gps", "force_time_injection", bundle);
-            Toast.makeText(this, "AGPS запрос на обновление данных", Toast.LENGTH_LONG).show();
-            return;
-        }
-        catch(Exception exception)
-        {
-            Log.e("clear AGPS",exception);
-        }
+        GPSUtils.loadAGPS(this, true);
     }
 
     @OnClick(R.id.btHide)

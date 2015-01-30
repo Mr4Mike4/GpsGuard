@@ -38,6 +38,7 @@ public class AppModel {
     private static final String MODEL_PREF = "MODEL_PREF";
     private static final String MODEL_SHOWACTIVITY = "MODEL_SHOWACTIVITY";
     private static final String MODEL_CLOSEACTIVITY = "CLOSE_SHOWACTIVITY";
+    public static final String MODEL_FROM_THREAD = "MODEL_FROM_THREAD";
 
     private synchronized static void initModel() {
         self = new AppModel();
@@ -195,6 +196,7 @@ public class AppModel {
         if (verifyString!=null && verifyString.length()>0 && currentLocationDateFix!=null){
             if (isShowActivityOnTrouble()){
                 Intent intent = new Intent(App.getInstance(),MainActivity.class);
+                intent.putExtra(MODEL_FROM_THREAD,true);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 App.getInstance().startActivity(intent);
             }

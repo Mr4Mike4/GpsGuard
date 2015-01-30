@@ -1,5 +1,6 @@
 package ru.max314.gpsguard;
 
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
@@ -43,12 +44,16 @@ public class MainActivity extends ActionBarActivity {
     CheckBox cbCloseOnClick;
 
     TimerUIHelper timerUIHelper;
+    boolean fromService = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        fromService = intent.getBooleanExtra(AppModel.MODEL_FROM_THREAD,false);
+
         ButterKnife.inject(this);
 
         cbShowActivity.setChecked(AppModel.getInstance().isShowActivityOnTrouble());
@@ -118,6 +123,9 @@ public class MainActivity extends ActionBarActivity {
     public void onClearAGPSClick(){
         GPSUtils.clearAGPS(this,true);
         AppModel.getInstance().reset();
+        if (fromService && AppModel.getInstance().isCloseActivityOnClick()){
+            this.finish();
+        }
     }
 
     @OnClick(R.id.btLoadAGPS)

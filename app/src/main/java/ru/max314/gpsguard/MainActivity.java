@@ -117,6 +117,7 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.btClearAGPS)
     public void onClearAGPSClick(){
         GPSUtils.clearAGPS(this,true);
+        AppModel.getInstance().reset();
     }
 
     @OnClick(R.id.btLoadAGPS)

@@ -180,8 +180,19 @@ public class AppModel {
         }
     }
 
+    public synchronized void reset(){
+        currentLocation = null;
+        currentLocationDate = null;
+        currentLocationDateFix = null;
+        checkLocationDateFix = null;
+
+    }
+
+    /**
+     * Показать главное окно
+     */
     public void showActivity(){
-        if (verifyString!=null && verifyString.length()>0){
+        if (verifyString!=null && verifyString.length()>0 && currentLocationDateFix!=null){
             if (isShowActivityOnTrouble()){
                 Intent intent = new Intent(App.getInstance(),MainActivity.class);
                 intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);

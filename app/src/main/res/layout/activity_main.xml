@@ -78,7 +78,7 @@
                 android:id="@+id/cbCloseOnClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Закрыть окно после нажатия на кнопу"
+                android:text="Закрыть окно после нажатия на кнопку 'Очистка'"
                 android:textSize="20dp"
                  />
             <FrameLayout
